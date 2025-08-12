@@ -1,0 +1,373 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    /* Game Brand Colors */
+    --primary: 14 100% 69%;  /* Orange-red gradient start */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 24 95% 53%;  /* Orange gradient end */
+
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 14 100% 69%;
+
+    --radius: 1rem;
+
+    /* Game specific colors */
+    --game-bg-start: 14 100% 69%;
+    --game-bg-end: 221 39% 11%;
+    --game-card: 0 0% 100%;
+    --game-card-hover: 220 14.3% 95.9%;
+    --game-timer: 0 84.2% 60.2%;
+    --game-success: 142 71% 45%;
+    --game-warning: 38 92% 50%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--game-bg-start)), hsl(var(--primary-glow)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--game-card)), hsl(var(--game-card-hover)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--game-success)), hsl(142 71% 35%));
+
+    /* Shadows */
+    --shadow-game: 0 25px 50px -12px hsl(var(--game-bg-start) / 0.25);
+    --shadow-card: 0 10px 25px -5px hsl(var(--foreground) / 0.1);
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 14 100% 69%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 24 95% 53%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 14 100% 69%;
+
+    --game-bg-start: 14 100% 69%;
+    --game-bg-end: 221 39% 11%;
+    --game-card: 240 10% 8%;
+    --game-card-hover: 240 5% 15%;
+    --game-timer: 0 84.2% 60.2%;
+    --game-success: 142 71% 45%;
+    --game-warning: 38 92% 50%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Mobile-first responsive utilities */
+  .mobile-responsive {
+    @apply text-sm sm:text-base landscape:text-sm;
+  }
+
+  .mobile-button {
+    @apply h-10 px-4 text-sm sm:h-12 sm:px-6 sm:text-base landscape:h-10 landscape:px-4 landscape:text-sm;
+  }
+
+  .mobile-input {
+    @apply h-10 text-sm sm:h-12 sm:text-base landscape:h-10 landscape:text-sm;
+  }
+
+  /* Landscape mode optimizations */
+  @media screen and (orientation: landscape) and (max-height: 600px) {
+    .min-h-screen {
+      @apply min-h-[100dvh];
+    }
+    
+    /* Compact spacing for landscape */
+    .landscape\:compact {
+      @apply py-2 space-y-2;
+    }
+    
+    /* Ensure content fits in landscape */
+    .landscape\:fit-content {
+      @apply max-h-[100dvh] overflow-y-auto;
+    }
+  }
+
+  /* Enhanced animations for mobile */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-scale-in {
+      animation: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .animate-fade-in {
+      animation: fade-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .hover-scale {
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+
+    @media (hover: none) {
+      .hover-scale:hover {
+        transform: none;
+      }
+      
+      .hover-scale:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  /* Touch optimizations */
+  @media (pointer: coarse) {
+    button, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Smooth transitions for all interactive elements */
+  button, input, textarea, select {
+    transition: var(--transition-fast);
+  }
+
+  /* Touch and mobile optimizations */
+  @media (max-width: 640px) {
+    .game-button {
+      min-height: 48px;
+      font-size: 0.875rem;
+    }
+    
+    .game-card {
+      padding: 1rem;
+    }
+  }
+
+  /* Landscape mode optimizations */
+  @media (orientation: landscape) and (max-height: 600px) {
+    .game-button {
+      min-height: 40px;
+      font-size: 0.75rem;
+      padding: 0.5rem 1rem;
+    }
+    
+    .game-card {
+      padding: 0.75rem;
+    }
+    
+    body {
+      font-size: 0.875rem;
+      overflow: hidden;
+    }
+    
+    html {
+      overflow: hidden;
+    }
+    
+    /* تحسين توزيع العناصر في وضع اللاندسكيب */
+    .landscape\:grid-cols-4 > * {
+      min-width: 0;
+    }
+
+    /* Landscape utility classes */
+    .landscape\:max-w-4xl {
+      max-width: 56rem;
+    }
+    
+    .landscape\:p-4 {
+      padding: 1rem;
+    }
+    
+    .landscape\:p-6 {
+      padding: 1.5rem;
+    }
+    
+    .landscape\:text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    
+    .landscape\:w-6 {
+      width: 1.5rem;
+    }
+    
+    .landscape\:h-6 {
+      height: 1.5rem;
+    }
+    
+    .landscape\:space-y-4 > :not([hidden]) ~ :not([hidden]) {
+      --tw-space-y-reverse: 0;
+      margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+      margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+    }
+    
+    .landscape\:grid {
+      display: grid;
+    }
+    
+    .landscape\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    .landscape\:gap-6 {
+      gap: 1.5rem;
+    }
+    
+    .landscape\:col-span-2 {
+      grid-column: span 2 / span 2;
+    }
+    
+    .landscape\:col-span-1 {
+      grid-column: span 1 / span 1;
+    }
+    
+    .landscape\:text-base {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+    
+    .landscape\:text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+    
+    .landscape\:h-10 {
+      height: 2.5rem;
+    }
+    
+    .landscape\:h-11 {
+      height: 2.75rem;
+    }
+    
+    .landscape\:px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .landscape\:max-h-44 {
+      max-height: 11rem;
+    }
+    
+    .landscape\:max-h-64 {
+      max-height: 16rem;
+    }
+    
+    .landscape\:overflow-y-auto {
+      overflow-y: auto;
+    }
+    
+    .landscape\:pr-2 {
+      padding-right: 0.5rem;
+    }
+    
+    .landscape\:p-1\.5 {
+      padding: 0.375rem;
+    }
+    
+    .landscape\:p-2 {
+      padding: 0.5rem;
+    }
+    
+    .landscape\:w-2\.5 {
+      width: 0.625rem;
+    }
+    
+    .landscape\:h-2\.5 {
+      height: 0.625rem;
+    }
+    
+    .landscape\:w-3 {
+      width: 0.75rem;
+    }
+    
+    .landscape\:h-3 {
+      height: 0.75rem;
+    }
+    
+    .landscape\:w-4 {
+      width: 1rem;
+    }
+    
+    .landscape\:h-4 {
+      height: 1rem;
+    }
+    
+    .landscape\:text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+  }
+}
