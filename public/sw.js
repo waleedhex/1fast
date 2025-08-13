@@ -1,4 +1,4 @@
-const CACHE_NAME = 'asra3-wahad-v2.1';
+const CACHE_NAME = 'asra3-wahad-v2.2';
 const STATIC_CACHE = 'asra3-static-v2.1';
 const DYNAMIC_CACHE = 'asra3-dynamic-v2.1';
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { GameCard } from "@/components/ui/game-card";
 import { GameButton } from "@/components/ui/game-button";
 import { Input } from "@/components/ui/input";
@@ -26,7 +26,7 @@ export function LoginScreen({ onLogin, codes }: LoginScreenProps) {
   }, [isPWA]);
 
   const verifyCode = () => {
-    if (codes.includes(codeInput.toLowerCase())) {
+    if (codes.some(code => code.toLowerCase() === codeInput.toLowerCase())) {
       // حفظ الرمز في localStorage
       localStorage.setItem('userLoginCode', codeInput.toLowerCase());
       onLogin();
